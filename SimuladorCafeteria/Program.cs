@@ -24,7 +24,7 @@ namespace SimuladorCafeteria
             {
                 Console.WriteLine(bebida.Preparar());
 
-                // Validación con Pattern Matching
+                
                 if (bebida is BebidaCaliente caliente)
                 {
                     if (caliente.temperatura > 88)
