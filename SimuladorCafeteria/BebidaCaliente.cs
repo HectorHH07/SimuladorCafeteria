@@ -20,7 +20,7 @@ namespace SimuladorCafeteria
         }
         public override string Preparar()
         {
-            return "Estamos preparando un :" + nombre + "Caliente a una temperatura de:" + Temperatura + "Tamaño:" + tamaño;
+            return "Estamos preparando un : " + nombre +" Caliente a una temperatura de : " + Temperatura + "°Con Tamaño : " + tamaño;
         }
     }
 }

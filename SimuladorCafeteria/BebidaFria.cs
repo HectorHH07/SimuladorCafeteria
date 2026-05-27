@@ -16,7 +16,7 @@ namespace SimuladorCafeteria
         }
         public override string Preparar()
         {
-            return "Estamos preparando un :" + nombre + "Helado con:" + CantidadHielo + "Cubos de hielo"+"de tamaño" + tamaño;
+            return "Estamos preparando un : " + nombre +" Helado (Con " + CantidadHielo +" cubos de hielo )de  tamaño : " + tamaño;
         }
     }
 }

@@ -1,48 +1,53 @@
-﻿namespace SimuladorCafeteria
+﻿using System;
+using System.Collections.Generic;
+
+namespace SimuladorCafeteria
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Bebida[] bebidas = new Bebida[3];
+            // Creación de la lista genérica basada en la superclase
+            List<Bebida> pedido = new List<Bebida>();
+
+            // Agregamos bebidas calientes y frías
+            pedido.Add(new BebidaCaliente("Café Americano", "Grande", 90.5f, 45.00f));
+            pedido.Add(new BebidaFria("Frappé de Capuchino", "Mediano", 5, 60.00f));
+            pedido.Add(new BebidaCaliente("Chocolate Caliente", "Grande", 85.0f, 50.00f));
+            pedido.Add(new BebidaFria("Té Helado", "Pequeño", 3, 35.00f));
+            pedido.Add(new BebidaCaliente("Latte", "Mediano", 92.0f, 55.00f));
+
+            Console.WriteLine("PREPARACIÓN DE BEBIDAS \n");
+
+            // Producción polimórfica
+            foreach (Bebida bebida in pedido)
+            {
+                Console.WriteLine(bebida.Preparar());
+
+                // Validación con Pattern Matching
+                if (bebida is BebidaCaliente caliente)
+                {
+                    if (caliente.temperatura > 88)
+                    {
+                        Console.WriteLine(" ¡Cuidado la  bebida  esta muy caliente!");
+                    }
+                }
+
+                Console.WriteLine();
+
+            }
+
+            // Sumatoria económica
+            float total = 0;
+             foreach (Bebida bebida in pedido)
+            {
+                total += bebida.Precio;
+            }
+
+
             
-            //solicitamos datos de la bebida
-            Console.WriteLine("Bebidas\n");
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine($"Bebida{i + 1}");
-
-                Console.Write("Nombre de la bebida:");
-                string nombre=Console.ReadLine();
-                Console.Write("Tamaño (Pequeño,Mediano,Grande):");
-                string tamaño = Console.ReadLine();
-                Console.Write("Precio:$");
-                float precio = float.Parse(Console.ReadLine());
-
-                bebidas[i] = new Bebida(nombre, tamaño, precio);
-                Console.WriteLine($"Bebida{i + 1} registrada con exito:\n");
-            }
-            //Aplicamos el descuneto
-            Console.WriteLine("Descuento");
-            bebidas[0].AplicarDescuento(15);
-            bebidas[1].AplicarDescuento(10);
-            bebidas[2].AplicarDescuento(5);
-            Console.WriteLine();
-            //Preparamos las bebidas
-            Console.WriteLine("Preparando Bebidas");
-            for (int i = 0; i < 3; i++)
-            {
-                bebidas[i].Preparar();
-            }
-            //Mostramos descrpcion de las bebidas
-           /* Console.WriteLine("Descripcion de Bebidas");           
-            for(int i = 0;i < 3; i++)
-            {
-                bebidas[i].MostrarDescripcion();
-            }
-           */
-
-            
+            Console.WriteLine("\nEl total del pedido es: $" + total);
         }
     }
+
 }
