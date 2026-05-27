@@ -8,39 +8,48 @@ namespace SimuladorCafeteria
 {
     internal class Bebida
     {
-        private string nombre;
-        private string tamaño;
-        private double precio;
-        //constructor para inicializar los productos
-        public Bebida(string nombre, string tamaño, double precio)
+        protected string nombre;
+        protected string tamaño;
+        protected float precio;
+        
+        public float Precio
+        {
+            get { return precio; }
+            set
+            {
+                if(value>0)
+                {
+                    precio = value;
+                }
+                else
+                {
+                    precio = -1;
+                }
+            }
+        }
+       public Bebida()
+        {
+            nombre = "";
+            tamaño = "";
+            precio = 0;
+        }
+        public Bebida(string nombre, string tamaño, float precio)
         {
             this.nombre = nombre;
             this.tamaño = tamaño;
             this.precio = precio;
         }
         //Metodo para simular la preparacion
-        public void Preparar()
+        public virtual string Preparar()
         {
-            Console.WriteLine($"Preparando un {nombre} tamaño {tamaño}");
+            return "Estamos preparando un :" + nombre + "De tamaño:" + tamaño;
         }
         //Metodo para aplicar descuento
-        public void AplicarDescuento(double porcentaje)
+        public void AplicarDescuento(float porcentaje)
         {
-            if (porcentaje >0 && porcentaje <=100)
-            {
-                double descuento = precio * (porcentaje / 100);
-                precio=descuento;
-                Console.WriteLine($"Se aplico un {porcentaje}% de descuento a {nombre}");
-            }
-            else
-            {
-                Console.WriteLine("Porcentaje de descuento no aceptado");
-            }
+            precio = precio * (1 - (porcentaje / 100));
         }
-        //Metodo para mostrar descripcion
-        public void MostrarDescripcion()
-        {
-            Console.WriteLine($"Esto es un {nombre} de tamaño {tamaño} con un costo de ${precio}");
-        }
+       
+       
     }
 }

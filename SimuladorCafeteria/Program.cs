@@ -17,7 +17,7 @@
                 Console.Write("Tamaño (Pequeño,Mediano,Grande):");
                 string tamaño = Console.ReadLine();
                 Console.Write("Precio:$");
-                double precio = Convert.ToDouble(Console.ReadLine());
+                float precio = float.Parse(Console.ReadLine());
 
                 bebidas[i] = new Bebida(nombre, tamaño, precio);
                 Console.WriteLine($"Bebida{i + 1} registrada con exito:\n");
@@ -35,12 +35,12 @@
                 bebidas[i].Preparar();
             }
             //Mostramos descrpcion de las bebidas
-            Console.WriteLine("Descripcion de Bebidas");           
+           /* Console.WriteLine("Descripcion de Bebidas");           
             for(int i = 0;i < 3; i++)
             {
                 bebidas[i].MostrarDescripcion();
             }
-
+           */
 
             
         }
